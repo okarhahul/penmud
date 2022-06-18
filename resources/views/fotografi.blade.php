@@ -19,17 +19,26 @@
       </div>
     </div>
 
-    @if($fotografi->count())
+    @if ($fotografi->count())
     <div class="row row-cols-1 row-cols-md-3 g-4">
       @foreach ($fotografi as $foto)
         <div class="col">
           <div class="card h-100 shadow-sm">
-            <img src="https://picsum.photos/200?grayscale" class="card-img-top" alt="...">
+
+            {{-- Menampilkan gambar --}}
+            @if ($foto->image)
+            <img src="{{ asset('storage/' . $foto->image) }}" alt="" class="img-fluid d-flex">
+              @else
+           <img src="https://picsum.photos/200/300?grayscale" alt="" class="img-fluid d-flex">
+              @endif
+
+            {{-- Card --}}
             <div class="card-body">
               <h5 class="card-title">
                 <a href="/fotografi/{{ $foto->slug }}" class="text-decoration-none">{{ $foto->judul }}</a>
               </h5>
-              <p>Ditulis oleh {{ $foto->user->name }}</p>
+              <p>Pemilik {{ $foto->pemilik }}</p>
+
               <hr>
               <p class="card-text">{{ $foto->headline }}</p>
             </div>
@@ -39,9 +48,10 @@
           </div>
         </div>
       @endforeach
-      @else 
-      <p class="text-center">Mohon maaf yang anda cari tidak di temukan</p>
-      @endif
+    </div>
+  @else 
+  <p class="text-center">Mohon maaf yang anda cari tidak di temukan</p>
+  @endif
     </div>
 
     <div class="d-flex mt-3">

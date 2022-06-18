@@ -27,16 +27,21 @@
         @foreach ($jurnalistik as $jurnal)
           <div class="col">
             <div class="card h-100 shadow-sm">
+
+              {{-- Menampilkan gambar --}}
               @if ($jurnal->image)
                 <img src="{{ asset('storage/' . $jurnal->image) }}" alt="" class="img-fluid d-flex">
                 @else
              <img src="https://picsum.photos/200/300?grayscale" alt="" class="img-fluid d-flex">
                 @endif
+
+              {{-- Card --}}
               <div class="card-body">
                 <h5 class="card-title">
                   <a href="/jurnalistik/{{ $jurnal->slug }}" class="text-decoration-none">{{ $jurnal->judul }}</a>
                 </h5>
-                <p>Ditulis oleh {{ $jurnal->user->name }}</p>
+                <p>Penulis: {{ $jurnal->penulis }}</p>
+                <p>Editor: {{ $jurnal->editor }}</p>
                 <p>Category <a href="/jurnalistik?categoryJurnalistik={{ $jurnal->categoryJurnalistik->slug }}" class="text-decoration-none">{{ $jurnal->categoryJurnalistik->name }}</a></p>
                 <hr>
                 <p class="card-text">{{ $jurnal->headline }}</p>

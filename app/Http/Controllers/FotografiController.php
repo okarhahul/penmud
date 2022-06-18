@@ -18,7 +18,6 @@ class FotografiController extends Controller
         return view('fotografi', [
             "tittle" => "Fotografi",
             "active" => 'fotografi',
-            // "posts" => Jurnalistik::all()
             "fotografi" => Fotografi::latest()->filter(request(['search']))->paginate(6)->withQueryString()
         ]);
     }

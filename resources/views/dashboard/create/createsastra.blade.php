@@ -32,6 +32,17 @@
             </div>
 
             <div class="mb-3">
+              <label for="penulis" class="form-label">Penulis</label>
+              <input type="text" class="form-control @error('penulis') is-invalid @enderror" id="penulis" name="penulis" required autofocus value="{{ old('penulis') }}">
+              @error('penulis')
+              <div class="invalid-feedback">
+                {{ $message }}
+              </div>
+              @enderror
+            </div>
+
+
+            <div class="mb-3">
               <label for="image" class="form-label">Pilih gambar</label>
               <img class="img-preview img-fluid mb-3 col-md-7">
               <input class="form-control @error('image') is-invalid @enderror" type="file" id="image" name="image" onchange="previewImage()">

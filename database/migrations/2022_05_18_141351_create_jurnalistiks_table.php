@@ -22,6 +22,8 @@ return new class extends Migration
             $table->foreignId('user_id');
             $table->foreignId('komentar_jurnalistik_id')->nullable();
             $table->string('judul');
+            $table->text('penulis')->nullable();
+            $table->text('editor')->nullable();
             $table->string('image')->nullable();
             $table->string('slug')->unique();
             $table->text('headline');

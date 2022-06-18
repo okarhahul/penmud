@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('category_sastra_id');
             $table->foreignId('user_id');
             $table->string('judul');
+            $table->text('penulis')->nullable();
             $table->string('image')->nullable();
             $table->string('slug')->unique();
             $table->text('headline');

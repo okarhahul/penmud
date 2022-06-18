@@ -19,6 +19,16 @@
             </div>
 
             <div class="mb-3">
+              <label for="pemilik" class="form-label">Pemilik</label>
+              <input type="text" class="form-control @error('pemilik') is-invalid @enderror" id="pemilik" name="pemilik" required autofocus value="{{ old('pemilik') }}">
+              @error('pemilik')
+              <div class="invalid-feedback">
+                {{ $message }}
+              </div>
+              @enderror
+            </div>
+
+            <div class="mb-3">
               <label for="image" class="form-label">Pilih gambar</label>
               <img class="img-preview img-fluid mb-3 col-md-7">
               <input class="form-control @error('image') is-invalid @enderror" type="file" id="image" name="image" onchange="previewImage()">
@@ -30,11 +40,11 @@
             </div>
 
             <div class="mb-3">
-              <label for="body" class="form-label">Isi</label>
+              <label for="body" class="form-label">Deskripsi Foto</label>
               @error('body')
               <p class="text-danger">{{ $message }}</p>
               @enderror
-              <input id="body" type="hidden" name="body" value="{{ old('body') }}" required>
+              <input id="body" type="hidden" name="body" value="{{ old('body') }}">
               <trix-editor input="body"></trix-editor>
             </div>
             <button type="submit" class="btn btn-primary">Tambahkan postingan <span data-feather="send"></span> </button>

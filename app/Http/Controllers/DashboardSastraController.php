@@ -46,6 +46,7 @@ class DashboardSastraController extends Controller
 
         $validatedData = $request->validate([
             'judul' => ['required', 'max:255'],
+            'penulis' => ['required', 'max:255'],
             'category_sastra_id' => ['required'],
             'image' => ['image', 'file'],
             'body' => ['required']

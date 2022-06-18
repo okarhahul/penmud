@@ -46,9 +46,10 @@ class DashboardJurnalistikController extends Controller
 
         $validatedData = $request->validate([
             'judul' => ['required', 'max:255'],
+            'penulis' => ['required', 'max:255'],
+            'editor' => ['required', 'max:255'],
             'category_jurnalistik_id' => ['required'],
             'image' => ['image', 'file'],
-            // 'image' => 'mimes:jpg, png',
             'body' => ['required']
         ]);
 
@@ -72,7 +73,6 @@ class DashboardJurnalistikController extends Controller
         // kalo ga ya yauda paek yg request judul yg baru
         if($filteredJudul != null) {
             $judul = collect($filteredJudul)->first()->judul;
-            // $newSlug = Str::of($judul)->append(" " . Str::random(3));
             $newSlug = Str::of($judul)->append(" " . mt_rand(1,10));
             $validatedData['slug'] = Str::slug($newSlug, '-');
         } else {
@@ -152,7 +152,8 @@ class DashboardJurnalistikController extends Controller
         $validatedData = $request->validate([
             'judul' => ['required', 'max:255'],
             'category_jurnalistik_id' => ['required'],
-            // 'image' => 'mimes:jpg, png',
+            'penulis' => ['required', 'max:255'],
+            'editor' => ['required', 'max:255'],
             'image' => ['image', 'file'],
             'body' => ['required']
         ]);

@@ -8,13 +8,12 @@
 
         {{-- Menampilkan judul dan penulis --}}
         <p class="fs-2 fw-bolder">{{ $post_jurnalistik->judul }}</p>
-        <p class="fs-6 text-muted">Ditulis oleh {{ $post_jurnalistik->user->name }}</p>
-        {{-- <h5>{{ $post_jurnalistik->judul }}</h5> --}}
-        {{-- <p>Ditulis oleh {{ $post_jurnalistik->user->name }}</p> --}}
+        <p class="fs-6 text-muted">Penulis {{ $post_jurnalistik->penulis }}</p>
+        <p class="fs-6 text-muted">Editor {{ $post_jurnalistik->editor }}</p>
         
         {{-- Menampilkan kategori --}}
-        <p>Category <a href="/jurnalistik?categories_jurnalistik={{ $post_jurnalistik->categoryJurnalistik->slug }}">{{ $post_jurnalistik->categoryJurnalistik->name }}</a></p>
-        <h5>{{ $post_jurnalistik->penulis }}</h5>
+        <p>Category {{ $post_jurnalistik->categoryJurnalistik->name }}</p>
+
 
         {{-- Menampilkan gambar --}}
         @if ($post_jurnalistik->image)
@@ -37,11 +36,6 @@
             <button class="btn btn-danger justify-content-end" type="button"><i class="bi bi-heart"></i> Suka</button>
             <button class="btn btn-primary" id="btn-komentar-utama"><i class="bi bi-chat-square-text"></i> Komentar</button>
           </div>
-
-        {{-- <div class="btn-group mb-3">
-            <button class="btn  border-2"><i class="bi bi-heart"></i> Suka</button>
-            <button class="btn  border-2" id="btn-komentar-utama"><i class="bi bi-chat-square-text"></i> Komentar</button>
-        </div> --}}
 
         {{-- ini fitur dari komentar ketika diklik --}}
         <input type="hidden" name="jurnalistik_id" value="{{ $post_jurnalistik->id }}">
@@ -67,7 +61,7 @@
                     </div>
             @endforeach
                 @else
-                    <p>Ga ada komen</p>
+                    <p class="text-center">belum ada komentar</p>
                 @endif
         </ul>
 
@@ -76,7 +70,7 @@
         </div>
     </div>
 
-    <div id="disqus_thread" class="mt-4"></div>
+    {{-- <div id="disqus_thread" class="mt-4"></div>
     <script>
         /**
         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
@@ -93,7 +87,7 @@
         s.setAttribute('data-timestamp', +new Date());
         (d.head || d.body).appendChild(s);
         })();
-    </script>
+    </script> --}}
 @endsection
 
     {{-- Jquery --}}

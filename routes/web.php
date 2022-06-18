@@ -1,16 +1,17 @@
 <?php
 
-use App\Http\Controllers\AdminControllerJurnalistik;
-use App\Http\Controllers\DashboardJurnalistikController;
-use App\Http\Controllers\DashboardSastraController;
-use App\Http\Controllers\DashboardFotografiController;
+use App\Models\CategoryJurnalistik;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\SastraController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\FotografiController;
 use App\Http\Controllers\JurnalistikController;
-use App\Models\CategoryJurnalistik;
+use App\Http\Controllers\DashboardSastraController;
+use App\Http\Controllers\AdminControllerJurnalistik;
+use App\Http\Controllers\DashboardFotografiController;
+use App\Http\Controllers\KomentarJurnalistikController;
+use App\Http\Controllers\DashboardJurnalistikController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +38,9 @@ Route::get('sastra/{sastra:slug}', [SastraController::class, 'show']);
 Route::get('/jurnalistik', [JurnalistikController::class, 'index']);
 Route::get('/jurnalistik/{jurnalistik:slug}', [JurnalistikController::class, 'show'])->name('jurnalistik');
 Route::post('/jurnalistik/komentar', [JurnalistikController::class, 'komentar']);
+
+// Route::post('jurnalistik/komentar', [KomentarJurnalistikController::class, 'show']);
+
 
 // search ajax
 // Route::get('/ajax', [JurnalistikController::class, 'ajax']);

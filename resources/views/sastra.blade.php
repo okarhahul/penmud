@@ -24,12 +24,20 @@
         @foreach ($sastra as $sast)
           <div class="col">
             <div class="card h-100 shadow-sm">
-              <img src="https://picsum.photos/200?grayscale" class="card-img-top" alt="...">
+              
+              {{-- Menampilkan gambar --}}
+              @if ($sast->image)
+              <img src="{{ asset('storage/' . $sast->image) }}" alt="" class="img-fluid d-flex mb-5">
+              @else
+              <img src="" alt="" class="">
+              @endif
+
+              {{-- Card --}}
               <div class="card-body">
                 <h5 class="card-title">
                   <a href="/sastra/{{ $sast->slug }}" class="text-decoration-none">{{ $sast->judul }}</a>
                 </h5>
-                <p>Ditulis oleh {{ $sast->user->name }}</p>
+                <p>penulis {{ $sast->penulis }}</p>
                 <p>Category <a href="/sastra?categorySastra={{ $sast->categorySastra->slug }}" class="text-decoration-none">{{ $sast->categorySastra->name }}</a></p>
                 <hr>
                 <p class="card-text">{{ $sast->headline }}</p>

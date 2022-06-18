@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->string('judul')->nullable();
+            $table->string('pemilik')->nullable();
             $table->string('slug')->unique();
             $table->string('image')->nullable();
             $table->text('headline')->nullable();

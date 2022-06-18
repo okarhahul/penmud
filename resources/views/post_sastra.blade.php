@@ -5,10 +5,21 @@
 {{-- ini adalah halaman tampil single post --}}
 
     <div class= "container">
-        <img src="https://picsum.photos/200?grayscale" alt="" class="img-fluid">
-        <h2>{{ $post_sastra->judul }}</h2>
-        <p>Ditulis oleh {{ $post_sastra->user->name }}</p>
-        <p>Category <a href="/categories_sastra/{{ $post_sastra->categorySastra->slug }}">{{ $post_sastra->categorySastra->name }}</a></p>
+        {{-- Menampilkan judul dan penulis --}}
+        <p class="fs-2 fw-bolder">{{ $post_sastra->judul }}</p>
+        <p class="fs-6 text-muted">Penulis {{ $post_sastra->penulis }}</p>
+
+        {{-- Menampilkan kategori --}}
+        <p>Category {{ $post_sastra->categorySastra->name }}</p>
+
+        {{-- Menampilkan gambar --}}
+        @if ($post_sastra->image)
+            <img src="{{ asset('storage/' . $post_sastra->image) }}" alt="" class="img-fluid d-flex mb-5">
+        @else
+            <img src="https://picsum.photos/200/300?grayscale" alt="" class="img-fluid d-flex mb-5">
+        @endif
+
+
         <h3>{{ $post_sastra->penulis }}</h3>
 
         {{-- Ini berfungsi untuk mencetak tulisan yang berisikan tag html --}}
