@@ -30,7 +30,7 @@ class JurnalistikController extends Controller
             "tittle" => "Jurnalistik",
             "keterangan" => $keterangan,
             "active" => 'jurnalistik',
-            "jurnalistik" => Jurnalistik::latest()->filter(request(['search', 'categoryJurnalistik']))->paginate(6)->withQueryString()
+            "jurnalistik" => Jurnalistik::latest()->paginate(6)->withQueryString()
         ]);
     }
 
@@ -42,7 +42,7 @@ class JurnalistikController extends Controller
             "tittle" => "Single Post",
             "active" => 'jurnalistik',
             "post_jurnalistik" => $jurnalistik,
-            "comments" => KomentarJurnalistik::all(),
+            "comments" => KomentarJurnalistik::where('post_jurnalistik_id', $jurnalistik->id)->get(),
         ]);
         // return Post::find($slug);
     }
@@ -121,27 +121,19 @@ class JurnalistikController extends Controller
         $request->request->add(['user_id' =>  auth()->user()->id]);
         $komentarjurnalistik = KomentarJurnalistik::create($request->all());
 
-        // kita ambil id komentar yang sudah tercreate
         $id_komen = KomentarJurnalistik::where('id', $komentarjurnalistik->id)->first()->id;
 
         // kita sesuaikan dengan id post jurnalistik
         $id_jurnalistik = $request->post_jurnalistik_id;
         Jurnalistik::where('id', $id_jurnalistik)
-        ->update(['komentar_jurnalistik_id' => $id_komen]);
+                ->update(['komentar_jurnalistik_id' => $id_komen]);
 
-        // kembalikan kehalaman semula
+        // return $komentarjurnalistik;
         return redirect()->back();
     }
 
-    // public function destroykomen(){
-
-    // }
-
-    // public function ajax() {
-
-    // }
-
-    // public function read() {
-    //     return 'Silahkan cari data';
-    // }
+    public function search(){
+        $filter = request()->query();
+        return Jurnalistik::where('judul', 'like', "%{$filter['search']}%")->get();
+    }
 }

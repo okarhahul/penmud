@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('sastras', function (Blueprint $table) {
             $table->id();
             $table->foreignId('category_sastra_id');
+            $table->foreignId('komentar_sastra_id')->nullable();
             $table->foreignId('user_id');
             $table->string('judul');
             $table->text('penulis')->nullable();

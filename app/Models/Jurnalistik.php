@@ -14,19 +14,19 @@ class Jurnalistik extends Model
     protected $guarded = ["id"];
     protected $with = ['categoryJurnalistik', 'user'];
 
-    public function scopeFilter($query, array $filters){
-        $query->when($filters['search'] ?? false, function($query, $search) {
-            return $query->where('judul', 'like', '%' . $search . '%')
-                        ->orWhere('headline', 'like' , '%' . $search . '%')
-                        ->orWhere('body', 'like' , '%' . $search . '%');
-        });
+    // public function scopeFilter($query, array $filters){
+    //     $query->when($filters['search'] ?? false, function($query, $search) {
+    //         return $query->where('judul', 'like', '%' . $search . '%')
+    //                     ->orWhere('headline', 'like' , '%' . $search . '%')
+    //                     ->orWhere('body', 'like' , '%' . $search . '%');
+    //     });
 
-        $query->when($filters['categoryJurnalistik'] ?? false, function($query, $categoryJurnalistik) {
-            return $query->whereHas('categoryJurnalistik', function($query)  use ($categoryJurnalistik) {
-                $query->where('slug', $categoryJurnalistik);
-            });
-        });
-    }
+    //     $query->when($filters['categoryJurnalistik'] ?? false, function($query, $categoryJurnalistik) {
+    //         return $query->whereHas('categoryJurnalistik', function($query)  use ($categoryJurnalistik) {
+    //             $query->where('slug', $categoryJurnalistik);
+    //         });
+    //     });
+    // }
 
 
     // Relasi

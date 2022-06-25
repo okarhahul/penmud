@@ -61,6 +61,7 @@
                 <li><a class="dropdown-item" href="/dashboard"><i class="bi bi-layout-text-sidebar-reverse"></i> Dashboard</a></li>
                 <li><hr class="dropdown-divider"></li>
                 @endcan
+                <li><a class="dropdown-item" href="/password.edit"><i class="bi bi-layout-text-sidebar-reverse"></i> Ganti Password</a></li>
                 <form action="/logout" method="post">
                   @csrf
                   <button type="submit" class="dropdown-item"><i class="bi bi-box-arrow-in-left"></i> Logout</button>

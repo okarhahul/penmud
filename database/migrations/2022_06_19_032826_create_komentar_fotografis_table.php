@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('komentar_jurnalistiks', function (Blueprint $table) {
+        Schema::create('komentar_fotografis', function (Blueprint $table) {
             $table->id();
             $table->text('konten');
-            $table->foreignId('post_jurnalistik_id')->constrained('jurnalistiks');
+            $table->foreignId('post_fotografi_id')->constrained('fotografis');
             $table->foreignId('user_id');
             $table->integer('parent');
             $table->timestamps();
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('komentar_jurnalistiks');
+        Schema::dropIfExists('komentar_fotografis');
     }
 };

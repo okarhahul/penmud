@@ -44,6 +44,55 @@
 
     {{-- JavaScript --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    {{-- <script>
+        let form = document.getElementById('search');
+
+        if(form) {
+            form.addEventListener('beforeinput', e => {
+            const formdata = new FormData(form);
+            let search = formdata.get('search');
+            let url = "{{ route('search', "search=") }}"+search
+       
+            fetch(url)
+            .then(response => response.json())
+            .then(data => {
+            let i;
+            let result = "";
+            if(data.length === 0){
+                result += '<div class="mb-3">Data tidak ditemukan</div>'  
+            }
+            for (i=0; i < data.length; i++) {
+                let jurnalistik = data[i];
+                result += `<div class="col">
+                            <div class="card h-100 shadow-sm">
+
+                            ${data[i].image}
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                <a href="/jurnalistik/{{ $jurnal->slug }}" class="text-decoration-none">${data[i].judul}</a>
+                                </h5>
+                                <p>Penulis: ${data[i].penulis}</p>
+                                <p>Editor: ${data[i].editor}</p>
+                                <p>Category <a href="/jurnalistik?categoryJurnalistik={{ $jurnal->categoryJurnalistik->slug }}" class="text-decoration-none">{{ $jurnal->categoryJurnalistik->name }}</a></p>
+                                <hr>
+                                <p class="card-text">{{ $jurnal->headline }}</p>
+                            </div>
+                            <div class="card-footer">
+                            <small class="text-muted">{{ $jurnal->created_at->diffForHumans() }}</small>
+                            </div>
+                            </div>
+                        </div>`;
+                // console.log(data[i]);
+               
+            }
+            document.getElementById('result').innerHTML = result;
+            })
+            .catch((err) => console.log(err))
+            })
+        console.log(form)
+        }
+    </script> --}}
     
 </body>
 </html>

@@ -41,7 +41,7 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('penamuda123')
         ]);
 
-        User::factory(5)->create();
+        // User::factory(5)->create();
 
         CategoryJurnalistik::create([
             'name' => 'Hardnews',

@@ -18,9 +18,10 @@ return new class extends Migration
             $table->foreignId('user_id');
             $table->string('judul')->nullable();
             $table->string('pemilik')->nullable();
-            $table->string('slug')->unique();
+            $table->foreignId('komentar_fotografi_id')->nullable();
             $table->string('image')->nullable();
             $table->text('headline')->nullable();
+            $table->string('slug')->unique();
             $table->text('body')->nullable();
             $table->timestamp('published_at')->nullable();
             $table->timestamps();

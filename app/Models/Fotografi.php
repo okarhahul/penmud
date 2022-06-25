@@ -23,6 +23,14 @@ class Fotografi extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function komentarFotografi(){
+        return $this->hasMany(KomentarFotografi::class, 'komentar_fotografi_id');
+    }
+
+    public function post_fotografi() {
+        return $this->hasMany(self::class, 'fotografi_id');
+    }
+
     // supaya url mengarah ke slug
 
     public function getRouteKeyName(){

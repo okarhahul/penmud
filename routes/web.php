@@ -2,15 +2,16 @@
 
 use App\Models\CategoryJurnalistik;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\SastraController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\FotografiController;
 use App\Http\Controllers\JurnalistikController;
+use App\Http\Controllers\UpdatePasswordController;
 use App\Http\Controllers\DashboardSastraController;
 use App\Http\Controllers\AdminControllerJurnalistik;
 use App\Http\Controllers\DashboardFotografiController;
-use App\Http\Controllers\KomentarJurnalistikController;
 use App\Http\Controllers\DashboardJurnalistikController;
 
 /*
@@ -24,31 +25,31 @@ use App\Http\Controllers\DashboardJurnalistikController;
 |
 */
 
-Route::get('/', function () {
-    return view('home', [
-        "tittle" => "Beranda",
-    ]);
-});
+// Route::get('/', function () {
+//     return view('home', [
+//         "tittle" => "Beranda",
+//     ]);
+// });
 
+Route::get('/', [HomeController::class, 'index']);
+// Route::get('/search', [HomeController::class, 'search'])->name('search');
 
 Route::get('/sastra', [SastraController::class, 'index']);
 Route::get('sastra/{sastra:slug}', [SastraController::class, 'show']);
+Route::post('/sastra/komentar', [SastraController::class, 'komentar'])->middleware('auth');
 
 
 Route::get('/jurnalistik', [JurnalistikController::class, 'index']);
 Route::get('/jurnalistik/{jurnalistik:slug}', [JurnalistikController::class, 'show'])->name('jurnalistik');
-Route::post('/jurnalistik/komentar', [JurnalistikController::class, 'komentar']);
-
-// Route::post('jurnalistik/komentar', [KomentarJurnalistikController::class, 'show']);
-
-
-// search ajax
-// Route::get('/ajax', [JurnalistikController::class, 'ajax']);
-// Route::get('/search-list', [JurnalistikController::class, 'read']);
+Route::post('/jurnalistik/komentar', [JurnalistikController::class, 'komentar'])->middleware('auth');
+Route::get('/search', [JurnalistikController::class, 'search'])->name('search');
+Route::get('/searchSas', [SastraController::class, 'search'])->name('searchSas');
+Route::get('/searchFoto', [FotografiController::class, 'search'])->name('searchFoto');
 
 
 Route::get('/fotografi', [FotografiController::class, 'index']);
-Route::get('fotografi/{fotografi:slug)', [FotografiController::class, 'show']);
+Route::get('/fotografi/{fotografi:slug}', [FotografiController::class, 'show']);
+Route::post('/fotografi/komentar', [FotografiController::class, 'komentar'])->middleware('auth');
 
 
 Route::get('/tentang', function () {
@@ -81,6 +82,11 @@ Route::resource('/dashboard/sastra', DashboardSastraController::class)->middlewa
 Route::resource('/dashboard/fotografi', DashboardFotografiController::class)->middleware('admin');
 
 Route::resource('/dashboard/categoryjurnalistik', AdminControllerJurnalistik::class)->except('show')->middleware('admin');
+
+
+Route::get('/password.edit', [UpdatePasswordController::class, 'edit'])->middleware('auth');
+Route::put('/password.edit', [UpdatePasswordController::class, 'update'])->middleware('auth');
+
 
 
 // View::composer('partials.navbar', function($view){

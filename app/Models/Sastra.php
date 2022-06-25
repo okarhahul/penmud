@@ -34,6 +34,14 @@ class Sastra extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function komentarSastra(){
+        return $this->hasMany(KomentarSastra::class, 'komentar_sastra_id');
+    }
+
+    public function post_sastra() {
+        return $this->hasMany(self::class, 'sastra_id');
+    }
+
     // supaya url mengarah ke slug
 
     public function getRouteKeyName(){
